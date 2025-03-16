@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}body {
+    min-height: 100vh;
+    background: rgb(242, 201, 182);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading {
+    text-align: center;
+    text-shadow: #000;
+    width: 300px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #d36f6f;
+
+}
