@@ -20,3 +20,13 @@
     background: #d36f6f;
 
 }
+
+.mini-games{
+    text-align: center;
+    text-shadow: #000;
+    width: 300px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #d36f6f;
+}
