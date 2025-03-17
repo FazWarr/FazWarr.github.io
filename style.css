@@ -1,0 +1,19 @@
+#heading{
+    text-align: center;
+    background-color: cornflowerblue;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #f9f9f9; 
+    text-decoration: none; 
+}
+  
+a p:first-child {
+    font-style: italic;
+}
