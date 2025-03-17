@@ -1,6 +1,14 @@
 #heading{
     text-align: center;
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
+}
+
+body {
+    /* min-height: 100vh; */
+    background: rgb(242, 201, 182);
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
 
 a {
