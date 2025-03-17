@@ -16,7 +16,7 @@ const paragraph = document.querySelector("p");
 button.addEventListener("click", updateButton);
 
 function updateButton() {
-  if (button.value === "Guess the number!") {
+  if (button.value === "Guess the number!!") {
     button.value = "Guess the number again!";
     paragraph.textContent = generateRandNum();
   } else {
