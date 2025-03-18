@@ -52,3 +52,39 @@ function updateButtonColour() {
     paragraph.textContent = generateRandCountry();
   }
 }
+
+// const express = require('express');
+// const Stripe = require('stripe');
+// const stripe = Stripe('your-secret-key'); // Replace with your secret key
+// const app = express();
+
+// app.use(express.json());
+
+// app.post('/create-checkout-session', async (req, res) => {
+//     try {
+//         const session = await stripe.checkout.sessions.create({
+//             payment_method_types: ['card'],
+//             line_items: [
+//                 {
+//                     price_data: {
+//                         currency: 'usd',
+//                         product_data: {
+//                             name: 'Your Product Name',
+//                         },
+//                         unit_amount: 2000, // Amount in cents ($20.00)
+//                     },
+//                     quantity: 1,
+//                 },
+//             ],
+//             mode: 'payment',
+//             success_url: 'https://your-site.com/success',
+//             cancel_url: 'https://your-site.com/cancel',
+//         });
+
+//         res.json({ url: session.url });
+//     } catch (error) {
+//         res.status(500).json({ error: error.message });
+//     }
+// });
+
+// app.listen(3000, () => console.log('Server running on port 3000'));
