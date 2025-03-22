@@ -3,14 +3,14 @@ function generateRandPet() {
   var things = [
     "Lion", "Tiger", "Elephant", "Kangaroo", "Panda", "Giraffe", "Zebra", "Bear", "Fox", "Dolphin",
     "Whale", "Monkey", "Wolf", "Leopard", "Deer", "Cheetah", "Moose", "Otter", "Skunk", "Raccoon",
-    "Eagle", "Parrot", "Penguin", "Owl", "Flamingo", "Peacock", "Sparrow", "Hummingbird", "Crow", "Hawk",
+    "Eagle", "Parrot", "Penguin", "Owl", "Flamingo", "Peacock", "Sparrow", "Crow", "Hawk",
     "Toucan", "Pigeon", "Rooster", "Vulture", "Stork", "Heron", "Swallow", "Seagull", "Albatross", "Crane",
-    "Crocodile", "Alligator", "Iguana", "Chameleon", "Turtle", "Snake", "Gecko", "Komodo Dragon", "Lizard", "Monitor",
+    "Crocodile", "Alligator", "Iguana", "Chameleon", "Turtle", "Snake", "Gecko", "Lizard", "Monitor",
     "Frog", "Toad", "Salamander", "Axolotl", "Newt", "Clownfish", "Shark", "Salmon", "Tuna", "Swordfish",
-    "Pufferfish", "Goldfish", "Eel", "Betta Fish", "Catfish", "Butterfly", "Bee", "Ant", "Grasshopper", "Dragonfly",
+    "Pufferfish", "Goldfish", "Eel", "Catfish", "Butterfly", "Bee", "Ant", "Grasshopper", "Dragonfly",
     "Beetle", "Ladybug", "Wasp", "Cricket", "Moth", "Spider", "Scorpion", "Tarantula", "Tick", "Octopus",
-    "Squid", "Jellyfish", "Seahorse", "Crab", "Lobster", "Starfish", "Shrimp", "Manta Ray", "Sea Urchin", "Cow",
-    "Rabbit", "Sheep", "Goat", "Chicken", "Horse", "Duck", "Goose", "Donkey", "Turkey"
+    "Squid", "Jellyfish", "Crab", "Lobster", "Starfish", "Shrimp", "Cow", "Rabbit", "Sheep", "Goat", 
+    "Chicken", "Horse", "Duck", "Goose", "Donkey", "Turkey"
 ]
 
 

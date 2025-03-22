@@ -8,16 +8,12 @@ function generateRandColour() {
     "Fuchsia", "Navy", "Emerald", "Sapphire", "Periwinkle", "Charcoal", 
     "Ebony", "Chestnut", "Rust", "Slate", "Cerulean", "Almond", "Blush", 
     "Mauve", "Mustard", "Ochre", "Apricot", "Bronze", "Lilac", "Azure", 
-    "Rose", "Scarlet", "Sky Blue", "Sea Green", "Chartreuse", "Brick Red", 
-    "Cobalt", "Canary Yellow", "Sand", "Ecru", "Pewter", "Mahogany", "Jade", 
-    "Tan", "Burgundy", "Claret", "Denim", "Bubblegum Pink", "Honeydew", 
-    "Pistachio", "Snow", "Storm Gray", "Pine Green", "Cornflower Blue", 
-    "Dusty Rose", "Garnet", "Lemon", "Ice Blue", "Terracotta", "Sunset Orange", 
-    "Wisteria", "Flame", "Coffee", "Topaz", "Umber", "Baby Blue", 
-    "Arctic White", "Mulberry", "Moss Green", "Copper", "Persimmon", 
-    "Sapphire Blue", "Watermelon", "Forest Green", "Pale Gold", "Champagne", 
-    "Cobalt Blue", "Pearl", "Mint Green", "Electric Blue", "Midnight Black"
-  ]
+    "Rose", "Scarlet", "Cobalt", "Sand", "Ecru", "Pewter", "Mahogany", 
+    "Jade", "Tan", "Burgundy", "Claret", "Denim", "Honeydew", "Pistachio", 
+    "Snow", "Garnet", "Lemon", "Terracotta", "Wisteria", "Flame", "Coffee", 
+    "Topaz", "Umber", "Mulberry", "Copper", "Persimmon", "Watermelon", 
+    "Pearl", "Mint", "Electric", "Midnight"
+]
 
 
   var thing = things[Math.floor(Math.random()*things.length)];  
