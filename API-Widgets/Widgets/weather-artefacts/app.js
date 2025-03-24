@@ -1,3 +1,4 @@
+https://medium.com/@ravipatel.it/a-comprehensive-guide-to-fetching-weather-data-using-javascript-fetch-api-13133d0bc2e6
 const API_KEY = '/weather';
 const BASE_URL = 'https://api.weather.gc.ca/collections.weather.gc.ca/';
 
