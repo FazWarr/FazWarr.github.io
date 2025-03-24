@@ -4,13 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Application</title>
-    <link rel="stylesheet" href="dataGovernance-artefacts/style.css">
+    <link rel="stylesheet" href="weather-artefacts/style.css">
 </head>
 <body>
     <h1>Weather Application</h1>
+
+
+    <div class="container">
+        <h1>Weather Forecast</h1>
+        <div class="input-section">
+            <input type="text" id="cityInput" placeholder="Enter city name" />
+            <button onclick="getWeather()">Get Weather</button>
+        </div>
+
+        <!-- Current Weather -->
+        <h2>Current Weather</h2>
+        <table id="weatherTable" class="styled-table">
+            <thead>
+                <tr>
+                    <th>City</th>
+                    <th>Temperature</th>
+                    <th>Condition</th>
+                </tr>
+            </thead>
+            <tbody id="weatherBody"></tbody>
+        </table>
+
+        <!-- 5-Day Forecast -->
+        <h2>5-Day Forecast</h2>
+        <table id="forecastTable" class="styled-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Temperature</th>
+                    <th>Condition</th>
+                </tr>
+            </thead>
+            <tbody id="forecastBody"></tbody>
+        </table>
+    </div>
+
+
+
 
     <ol class="card-container">
         <a href="../api-widgets.html"><li>Back to API-Widgets</li></a>
     </ol>
 </body>
+<script src="weather-artefacts/app.js"></script>
 </html>
