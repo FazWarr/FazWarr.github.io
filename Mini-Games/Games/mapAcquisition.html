@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mapAcquisition-artefacts/style.css">
+    <title>Map Acquisition!</title>
+</head>
+<body>
+    <div class="mapA-style">
+        <h1>Acquire your country!</h1>
+    </div>
+
+    <div id="game">
+        <h1>Map Acquisition Game</h1>
+        <div id="dice-roll">
+          <button id="roll-dice">Roll Dice</button>
+          <p id="user-roll">Your Roll: --</p>
+          <p id="computer-roll">Computer's Roll: --</p>
+          <p id="result">Result: --</p>
+        </div>
+        <div id="map">
+          <h3>Click on a Country:</h3>
+          <!-- <embed id="worldMap" type="image/svg+xml" src="mapAcquisition-artefacts/map.svg.svg"> -->
+
+          <svg id="world-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
+            <!-- Example country -->
+            <path id="USA" d="M100,100 L200,100 L200,200 L100,200 Z" fill="#ccc" stroke="#000" />
+            <path id="Canada" d="M300,100 L400,100 L400,200 L300,200 Z" fill="#ccc" stroke="#000" />
+            <!-- Add more countries -->
+          </svg>
+        </div>
+        <div id="acquired">
+          <h3>Acquired Countries:</h3>
+          <ul id="acquired-list"></ul>
+        </div>
+    </div>
+      
+      
+
+    <ol class="card-container">
+        <a href="../mini-games.html"><li>Back to Mini-Games</li></a>
+    </ol>
+</body>
+
+<script src="mapAcquisition-artefacts/app.js"></script>
+</html>
