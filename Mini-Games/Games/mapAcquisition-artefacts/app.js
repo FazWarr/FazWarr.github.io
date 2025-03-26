@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const mapContainer = document.getElementById('mapContainer'); // Parent element for the SVG
+
+  // Dynamically fetch the SVG file
+  fetch('mapAcquisition-artefacts/map.svg')
+      .then(response => {
+          if (!response.ok) {
+              throw new Error(`Failed to load SVG: ${response.status}`);
+          }
+          return response.text();
+      })
+      .then(svgContent => {
+          // Insert SVG into the container
+          mapContainer.innerHTML = svgContent;
+
+          // Make the SVG interactive
+          const svgMap = document.getElementById('worldMap'); // Ensure your SVG has an ID
+          const countries = svgMap.querySelectorAll('path'); // Select all country paths
+          countries.forEach(country => {
+              country.addEventListener('click', () => {
+                  console.log(`Clicked on country: ${country.id}`);
+                  country.setAttribute('fill', 'blue'); // Example: Change color on click
+              });
+          });
+      })
+      .catch(error => console.error('Error loading SVG:', error));
+});
+
+document.addEventListener('DOMContentLoaded', () => {
   const rollButton = document.getElementById('rollDice');
   const userRollSpan = document.getElementById('userRoll');
   const computerRollSpan = document.getElementById('computerRoll');
