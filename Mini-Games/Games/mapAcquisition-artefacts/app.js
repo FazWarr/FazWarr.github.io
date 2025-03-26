@@ -14,12 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
           mapContainer.innerHTML = svgContent;
 
           // Make the SVG interactive
-          const svgMap = document.getElementById('worldMap'); // Ensure your SVG has an ID
-          const countries = svgMap.querySelectorAll('g'); // Select all country paths
-          countries.forEach(country => {
-              country.addEventListener('click', () => {
-                  console.log(`Clicked on country: ${country.id}`);
-                  country.setAttribute('fill', 'blue'); // Example: Change color on click
+          const svgObject = document.getElementById('worldMap');
+          svgObject.addEventListener('load', () => {
+              const svgDoc = svgObject.contentDocument; // Access the loaded SVG document
+              const countries = svgDoc.querySelectorAll('path'); // Select all country paths
+              countries.forEach(country => {
+                  country.addEventListener('click', () => {
+                      console.log(`Clicked country: ${country.id}`);
+                      country.setAttribute('fill', 'blue'); // Change color
+                  });
               });
           });
       })
