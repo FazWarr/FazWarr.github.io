@@ -68,3 +68,24 @@ a p:first-child {
         flex: 1 1 100%; /* Stacks cards on very small screens */
     }
 }
+
+#stock-tracker {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  #stock-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #stock-list li {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  
