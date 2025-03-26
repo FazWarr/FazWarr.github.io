@@ -1,65 +1,74 @@
-const userRollElement = document.getElementById("user-roll");
-const computerRollElement = document.getElementById("computer-roll");
-const resultElement = document.getElementById("result");
-const acquiredList = document.getElementById("acquired-list");
-const countries = document.querySelectorAll("svg path");
+document.addEventListener('DOMContentLoaded', () => {
+  const rollButton = document.getElementById('rollDice');
+  const userRollSpan = document.getElementById('userRoll');
+  const computerRollSpan = document.getElementById('computerRoll');
+  const winnerSpan = document.getElementById('winner');
 
-let userTurn = false;
+  let userCountries = [];
+  let computerCountries = [];
 
+  rollButton.addEventListener('click', () => {
+      // Roll dice for both players
+      const userRoll = rollDice();
+      const computerRoll = rollDice();
 
-document.getElementById("roll-dice").addEventListener("click", () => {
-  const userRoll = Math.floor(Math.random() * 6) + 1; // User rolls the dice (1-6)
-  const computerRoll = Math.floor(Math.random() * 6) + 1; // Computer rolls the dice (1-6)
+      // Update UI with dice rolls
+      userRollSpan.textContent = userRoll;
+      computerRollSpan.textContent = computerRoll;
 
-  userRollElement.textContent = `Your Roll: ${userRoll}`;
-  computerRollElement.textContent = `Computer's Roll: ${computerRoll}`;
+      // Determine winner
+      let winner;
+      if (userRoll > computerRoll) {
+          winner = 'User';
+      } else if (computerRoll > userRoll) {
+          winner = 'Computer';
+      } else {
+          winner = 'Tie';
+      }
 
-  if (userRoll > computerRoll) {
-    resultElement.textContent = "You win! Click on a country.";
-    userTurn = true;
-    enableCountrySelection();
-  } else if (userRoll < computerRoll) {
-    resultElement.textContent = "Computer wins! Computer acquires a country.";
-    userTurn = false;
-    acquireRandomCountry("Computer");
-  } else {
-    resultElement.textContent = "It's a tie! Roll again.";
-    userTurn = false;
-    disableCountrySelection();
+      winnerSpan.textContent = winner;
+
+      // Allow country selection if there's a winner
+      if (winner !== 'Tie') {
+          const svgMap = document.getElementById('worldMap').contentDocument;
+          const countries = svgMap.querySelectorAll('path');
+
+          if (winner === 'User') {
+              svgMap.addEventListener('click', function selectCountry(event) {
+                  if (event.target.tagName === 'path' && !event.target.classList.contains('user-owned') && !event.target.classList.contains('computer-owned')) {
+                      event.target.classList.add('user-owned');
+                      userCountries.push(event.target.id);
+                      svgMap.removeEventListener('click', selectCountry);
+                      checkWinner();
+                  }
+              });
+          } else {
+              // Computer selects a random country
+              const availableCountries = Array.from(countries).filter(
+                  c => !c.classList.contains('user-owned') && !c.classList.contains('computer-owned')
+              );
+
+              if (availableCountries.length > 0) {
+                  const randomCountry = availableCountries[Math.floor(Math.random() * availableCountries.length)];
+                  randomCountry.classList.add('computer-owned');
+                  computerCountries.push(randomCountry.id);
+                  checkWinner();
+              }
+          }
+      }
+  });
+
+  function rollDice() {
+      return Math.floor(Math.random() * 6) + 1;
+  }
+
+  function checkWinner() {
+      const totalCountries = document.getElementById('worldMap').contentDocument.querySelectorAll('path').length;
+
+      if (userCountries.length / totalCountries >= 0.75) {
+          alert('User wins the game!');
+      } else if (computerCountries.length / totalCountries >= 0.75) {
+          alert('Computer wins the game!');
+      }
   }
 });
-
-function enableCountrySelection() {
-  countries.forEach(country => {
-    country.style.cursor = "pointer";
-    country.addEventListener("click", () => {
-      if (userTurn) {
-        acquiredList.innerHTML += `<li>${country.id} (You)</li>`;
-        country.style.fill = "#4caf50"; // Change color to indicate acquisition
-        userTurn = false;
-        resultElement.textContent = "Roll the dice to play again!";
-      }
-    });
-  });
-}
-
-function disableCountrySelection() {
-  countries.forEach(country => {
-    country.style.cursor = "default";
-  });
-}
-
-function acquireRandomCountry(player) {
-  const availableCountries = Array.from(countries).filter(country => country.style.fill !== "#4caf50");
-  if (availableCountries.length > 0) {
-    const randomIndex = Math.floor(Math.random() * availableCountries.length);
-    const randomCountry = availableCountries[randomIndex];
-    acquiredList.innerHTML += `<li>${randomCountry.id} (${player})</li>`;
-    randomCountry.style.fill = "#f44336"; // Change color to indicate computer acquisition
-    resultElement.textContent = "Roll the dice to play again!";
-  } else {
-    resultElement.textContent = "All countries have been acquired!";
-  }
-}
-
-disableCountrySelection(); // Disable country selection initially

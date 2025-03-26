@@ -62,23 +62,54 @@ a p:first-child {
     }
 }
 
-#game {
-    font-family: Arial, sans-serif;
-    text-align: center;
+#gameContainer {
     padding: 20px;
-  }
-  
-  svg {
-    width: 80%;
-    margin: 20px auto;
-  }
-  
-  path {
+}
+
+h1 {
+    color: #333;
+}
+
+#status {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#mapContainer {
+    margin-top: 20px;
+    max-width: 80%;
+    margin: auto;
+}
+
+path {
+    cursor: pointer;
+    fill: #ccc;
     transition: fill 0.3s ease;
-  }
-  
-  path:hover {
-    fill: #90caf9; /* Highlight on hover */
-  }
+}
+
+path:hover {
+    fill: #888;
+}
+
+/* Colors for ownership */
+.user-owned {
+    fill: blue !important;
+}
+
+.computer-owned {
+    fill: red !important;
+}
   
   

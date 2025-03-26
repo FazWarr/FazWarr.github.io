@@ -11,31 +11,22 @@
         <h1>Acquire your country!</h1>
     </div>
 
-    <div id="game">
+    <div id="gameContainer">
         <h1>Map Acquisition Game</h1>
-        <div id="dice-roll">
-          <button id="roll-dice">Roll Dice</button>
-          <p id="user-roll">Your Roll: --</p>
-          <p id="computer-roll">Computer's Roll: --</p>
-          <p id="result">Result: --</p>
+        
+        <div id="status">
+            <p>User Roll: <span id="userRoll">0</span></p>
+            <p>Computer Roll: <span id="computerRoll">0</span></p>
+            <p>Winner: <span id="winner">None</span></p>
         </div>
-        <div id="map">
-          <h3>Click on a Country:</h3>
-          <!-- <embed id="worldMap" type="image/svg+xml" src="mapAcquisition-artefacts/map.svg.svg"> -->
-
-          <svg id="world-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
-            <!-- Example country -->
-            <path id="USA" d="M100,100 L200,100 L200,200 L100,200 Z" fill="#ccc" stroke="#000" />
-            <path id="Canada" d="M300,100 L400,100 L400,200 L300,200 Z" fill="#ccc" stroke="#000" />
-            <!-- Add more countries -->
-          </svg>
-        </div>
-        <div id="acquired">
-          <h3>Acquired Countries:</h3>
-          <ul id="acquired-list"></ul>
+        
+        <button id="rollDice">Roll Dice</button>
+        
+        <div id="mapContainer">
+            <!-- SVG Map will be loaded dynamically via JavaScript or embedded inline -->
+            <object id="worldMap" type="image/svg+xml" data="mapAcquisition-artefacts/map.svg"></object>
         </div>
     </div>
-      
       
 
     <ol class="card-container">
