@@ -14,6 +14,12 @@ document.getElementById("search-button").addEventListener("click", () => {
           alert("City not found. Please try another one.");
           return;
         }
+
+        // Extract city and country
+        const cityName = geoData[0].display_name.split(",")[0];
+        const countryName = geoData[0].display_name.split(",").pop();
+
+        document.getElementById("city-country").textContent = `Location: ${cityName}, ${countryName}`;
   
         const lat = geoData[0].lat;
         const lon = geoData[0].lon;
@@ -24,6 +30,14 @@ document.getElementById("search-button").addEventListener("click", () => {
         fetch(weatherUrl)
           .then(response => response.json())
           .then(weatherData => {
+
+            // Safely access forecast dates
+            const forecastDates = weatherData.daily?.time?.slice(0, 7) || [];
+            if (forecastDates.length === 0) {
+                console.error("No forecast dates available in the API response.");
+              return;
+            }
+
             // Current weather
             const currentTemp = weatherData.current_weather.temperature;
             const humidity = weatherData.hourly.relative_humidity_2m[0];
@@ -51,14 +65,20 @@ document.getElementById("search-button").addEventListener("click", () => {
             const weatherClass = getWeatherTypeClass(weatherCode);
             document.body.className = weatherClass;
 
-            // Display 5-day forecast
+            // Display 7-day forecast
             const forecastList = document.getElementById("forecast-list");
             forecastList.innerHTML = ""; // Clear previous forecast
   
-            const dailyForecast = weatherData.daily.temperature_2m_max.slice(0, 5); // Get next 5 days
+            const dailyForecast = weatherData.daily.temperature_2m_max.slice(0, 7); // Get next 5 days
             dailyForecast.forEach((temp, index) => {
+              // Convert forecast date to day name
+              const forecastDate = new Date(forecastDates[index]);
+              const forecastDay = forecastDate.toLocaleString("en-US", { weekday: "long" }); // Extract day name
+
+              // Create list item
               const listItem = document.createElement("li");
-              listItem.textContent = `Day ${index + 1}: Max Temp ${temp}°C`;
+              listItem.style.listStyleType = "none"; // Remove bullet styling
+              listItem.textContent = `${forecastDay}: Max Temp ${temp}°C`;
               forecastList.appendChild(listItem);
             });
           })

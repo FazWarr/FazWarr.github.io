@@ -13,15 +13,22 @@
         <h1>Weather Application</h1>
         <input type="text" id="city-input" placeholder="Enter city" />
         <button id="search-button">Search</button>
-        <div id="weather-display">
-          <p id="current-weather">Current Weather: --</p>
-          <p id="current-day">Day: --</p>
-          <p id="current-date">Date: --</p>
-          <p id="current-time">Time: --</p>
-          <p id="humidity-level">Humidity: --</p>
-          <p id="weather-type">Weather Type: --</p>
-          <h3>5-Day Forecast:</h3>
-          <ul id="forecast-list"></ul>
+
+        <div id="weather-container">
+          <div id="current-weather-section">
+            <p id="city-country">Location: --</p>
+            <p id="current-weather">Current Weather: --</p>
+            <p id="current-day">Day: --</p>
+            <p id="current-date">Date: --</p>
+            <p id="current-time">Time: --</p>
+            <p id="humidity-level">Humidity: --</p>
+            <p id="weather-type">Weather Type: --</p>
+          </div>
+
+          <div id="forecast-section">
+            <h3>7-Day Forecast:</h3>
+            <ul id="forecast-list"></ul>
+          </div>
         </div>
       </div>
       

@@ -15,19 +15,19 @@
   /* Cloudy weather */
   .weather-cloudy {
     background: linear-gradient(to bottom, #778899, #c0c0c0);
-    color: white;
+    color: rgb(0, 0, 0);
   }
   
   /* Foggy weather */
   .weather-foggy {
     background: linear-gradient(to bottom, #696969, #a9a9a9);
-    color: white;
+    color: rgb(0, 0, 0);
   }
   
   /* Rainy weather */
   .weather-rainy {
     background: linear-gradient(to bottom, #4682B4, #6CA6CD);
-    color: white;
+    color: rgb(0, 0, 0);
   }
   
   /* Snowy weather */
@@ -44,15 +44,6 @@
     max-width: 400px;
     margin: 20px auto;
   }
-
-
-/* #heading{
-    text-align: center;
-} */
-
-/* body {
-    background: rgb(242, 201, 182);
-} */
 
 a {
     display: block;
@@ -111,50 +102,48 @@ a p:first-child {
         flex: 1 1 100%; /* Stacks cards on very small screens */
     }
 }
+  
+/* Flex container for side-by-side layout */
+#weather-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
 
-/* #weather-app {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 20px;
-    background-color: #e3f2fd;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  #city-input {
-    padding: 10px;
-    width: 80%;
-    margin-bottom: 10px;
-  }
-  
-  #search-button {
-    padding: 10px 15px;
-    background-color: #64b5f6;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 3px;
-  }
-  
-  #weather-display p,
-  #weather-display ul {
-    margin: 10px 0;
-  }
+/* Current Weather Section */
+#current-weather-section {
+  flex: 1;
+  background-color: #e3f2fd;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  #forecast-list {
-    list-style-type: none; /* Removes the dots */
-    /* padding: 0; /* Removes any padding around the list */
-  
-  #forecast-list li {
-    font-size: 16px;
-    color: #333;
-    margin: 5px 0;
-  } */
+/* Forecast Section */
+#forecast-section {
+  flex: 1;
+  background-color: #e8f5e9;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+/* Forecast List */
+#forecast-list {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0;
+}
 
-  
-  
-  
-  
+#forecast-list li {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #weather-container {
+    flex-direction: column; /* Stack sections vertically on smaller screens */
+  }
+}
