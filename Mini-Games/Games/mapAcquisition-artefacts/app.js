@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Make the SVG interactive
           const svgMap = document.getElementById('worldMap'); // Ensure your SVG has an ID
-          const countries = svgMap.querySelectorAll('path'); // Select all country paths
+          const countries = svgMap.querySelectorAll('g'); // Select all country paths
           countries.forEach(country => {
               country.addEventListener('click', () => {
                   console.log(`Clicked on country: ${country.id}`);
