@@ -7,24 +7,32 @@
     <title>Map Acquisition!</title>
 </head>
 <body>
-    <div class="mapA-style">
-        <h1>Acquire your country!</h1>
-    </div>
-
+    
     <div id="gameContainer">
         <h1>Map Acquisition Game</h1>
         
         <div id="status">
             <p>User Roll: <span id="userRoll">0</span></p>
             <p>Computer Roll: <span id="computerRoll">0</span></p>
-            <p>Winner: <span id="winner">None</span></p>
+            <p>Turn Winner: <span id="winner">None</span></p>
         </div>
         
         <button id="rollDice">Roll Dice</button>
         
+        <div id="scoreboard">
+            <div>User Progress: <progress id="userProgress" max="100" value="0"></progress></div>
+            <div>Computer Progress: <progress id="computerProgress" max="100" value="0"></progress></div>
+        </div>
+        
+        <div id="flagDisplay"></div>
+        
         <div id="mapContainer">
-            <!-- SVG Map will be loaded dynamically via JavaScript or embedded inline -->
-            <object id="worldMap" type="image/svg+xml" data="mapAcquisition-artefacts/map.svg"></object>
+            <svg id="worldMap" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
+                <!-- Ensure each country has a unique ID -->
+                <path id="country1" d="M10,10 L50,10 L50,50 L10,50 Z" fill="#ccc" />
+                <path id="country2" d="M60,10 L100,10 L100,50 L60,50 Z" fill="#ccc" />
+                <!-- Add more countries -->
+            </svg>
         </div>
     </div>
       
