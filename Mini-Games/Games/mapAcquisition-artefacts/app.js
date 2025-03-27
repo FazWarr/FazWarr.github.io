@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let userCountries = [];
   let computerCountries = [];
-  const maxSelections = 100; // Limit for total acquisitions
+  const maxSelections = 50; // Limit for total acquisitions
   let totalSelections = 0;
 
   rollButton.addEventListener('click', () => {
@@ -121,25 +121,48 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function checkWinner() {
-      const totalCountries = countries.length;
+    const totalCountries = countries.length;
+    let endMessage = "";
 
-      if (userCountries.length / totalCountries >= 0.75) {
-          alert('User wins the game by acquiring 75% of the map!');
-          rollButton.disabled = true;
-      } else if (computerCountries.length / totalCountries >= 0.75) {
-          alert('Computer wins the game by acquiring 75% of the map!');
-          rollButton.disabled = true;
-      } else if (totalSelections >= maxSelections) {
-          if (userCountries.length > computerCountries.length) {
-              alert('User wins the game by acquiring more countries!');
-          } else if (computerCountries.length > userCountries.length) {
-              alert('Computer wins the game by acquiring more countries!');
-          } else {
-              alert('The game is a tie!');
-          }
-          rollButton.disabled = true;
-      }
+    if (userCountries.length / totalCountries >= 0.75) {
+        endMessage = "User wins the game by acquiring 75% of the map!";
+    } else if (computerCountries.length / totalCountries >= 0.75) {
+        endMessage = "Computer wins the game by acquiring 75% of the map!";
+    } else if (totalSelections >= maxSelections) {
+        if (userCountries.length > computerCountries.length) {
+            endMessage = "User wins the game by acquiring more countries!";
+        } else if (computerCountries.length > userCountries.length) {
+            endMessage = "Computer wins the game by acquiring more countries!";
+        } else {
+            endMessage = "The game ends in a tie!";
+        }
+    }
+
+    if (endMessage) {
+        // Graceful game conclusion
+        rollButton.style.display = "none"; // Hide roll dice button
+        document.getElementById("scoreboard").style.display = "none"; // Hide the scoreboard
+
+        const endScreen = document.createElement("div");
+        endScreen.id = "endScreen";
+        endScreen.innerHTML = `
+            <h2>Game Over</h2>
+            <p>${endMessage}</p>
+            <p>User Acquired: ${userCountries.length}</p>
+            <p>Computer Acquired: ${computerCountries.length}</p>
+            <button id="restartGame">Restart Game</button>
+        `;
+
+        const infoContainer = document.getElementById("infoContainer");
+        infoContainer.appendChild(endScreen);
+
+        // Restart button functionality
+        document.getElementById("restartGame").addEventListener("click", () => {
+            location.reload(); // Reload the page to restart the game
+        });
+    }
   }
+
 });
 
 

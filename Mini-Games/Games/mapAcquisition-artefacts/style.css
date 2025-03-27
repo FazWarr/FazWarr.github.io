@@ -220,6 +220,40 @@ progress {
     border-bottom: none;
 }
 
+#endScreen {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#endScreen h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#endScreen p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+#endScreen button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#endScreen button:hover {
+    background-color: #0056b3;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     #mapContainer {
