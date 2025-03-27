@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let userCountries = [];
   let computerCountries = [];
-  const maxSelections = 20; // Limit for total acquisitions
+  const maxSelections = 100; // Limit for total acquisitions
   let totalSelections = 0;
 
   rollButton.addEventListener('click', () => {
