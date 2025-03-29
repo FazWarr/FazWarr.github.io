@@ -208,6 +208,10 @@ document.addEventListener("DOMContentLoaded", () => {
     generatePattern();
 });
 
+{/* <h2>Sorting and Categorizing:</h2> */}
+
+
+
 
 
 

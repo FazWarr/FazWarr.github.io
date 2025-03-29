@@ -214,7 +214,7 @@ body {
     padding: 0;
 }
 
-#gameContainer {
+#gameContainerPattern {
     margin: 50px auto;
     width: 90%;
     max-width: 500px;
@@ -291,6 +291,9 @@ button:hover {
     font-weight: bold;
     margin-top: 20px;
 }
+
+
+
 
 
 
