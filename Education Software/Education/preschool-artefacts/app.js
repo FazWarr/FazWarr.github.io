@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     generateQuestion();
 });
 
+{/* <h2>Shapes</h2>  */}
 document.addEventListener("DOMContentLoaded", () => {
     const shapes = ["circle", "square", "triangle"];
     const shapeDisplay = document.getElementById("shapeDisplay");
@@ -127,3 +128,88 @@ document.addEventListener("DOMContentLoaded", () => {
     // Start the first question
     generateQuestion();
 });
+
+{/* <h2>Patterns:</h2> */}
+document.addEventListener("DOMContentLoaded", () => {
+    const shapes = ["circle", "square", "triangle"]; // Available shapes
+    const patternDisplay = document.getElementById("patternDisplay");
+    const choicesDisplay = document.getElementById("choicesDisplay");
+    const resultMessage = document.getElementById("resultMessagePattern");
+    const nextButton = document.getElementById("nextButtonPattern");
+
+    let correctAnswer = ""; // Store the correct shape for the missing pattern piece
+
+    // Function to generate a new pattern
+    function generatePattern() {
+        // Reset previous round data
+        patternDisplay.innerHTML = "";
+        choicesDisplay.innerHTML = "";
+        resultMessage.textContent = "";
+        nextButton.style.display = "none";
+
+        // Randomly generate a repeating pattern sequence
+        const patternLength = Math.floor(Math.random() * 3) + 4; // Random length between 4 and 6
+        const pattern = [];
+        for (let i = 0; i < patternLength; i++) {
+            pattern.push(shapes[i % shapes.length]); // Create alternating sequence (e.g., Circle, Square, Triangle)
+        }
+
+        // Determine the correct answer (last shape in the sequence)
+        correctAnswer = pattern[pattern.length % shapes.length];
+
+        // Display the pattern with a missing piece at the end
+        for (let i = 0; i < patternLength - 1; i++) {
+            const shapeElement = document.createElement("div");
+            shapeElement.classList.add("shape", pattern[i]);
+            patternDisplay.appendChild(shapeElement);
+        }
+
+        // Add placeholder for missing piece
+        const missingPiece = document.createElement("div");
+        missingPiece.classList.add("shape");
+        missingPiece.style.border = "2px dashed gray"; // Placeholder for the missing shape
+        patternDisplay.appendChild(missingPiece);
+
+        // Generate random answer choices
+        const choices = [correctAnswer];
+        while (choices.length < 3) {
+            const randomChoice = shapes[Math.floor(Math.random() * shapes.length)];
+            if (!choices.includes(randomChoice)) {
+                choices.push(randomChoice); // Ensure no duplicate choices
+            }
+        }
+
+        // Shuffle answer choices and display as buttons
+        choices.sort(() => Math.random() - 0.5); // Randomize order
+        choices.forEach((choice) => {
+            const button = document.createElement("button");
+            button.textContent = choice.charAt(0).toUpperCase() + choice.slice(1); // Capitalize the choice
+            button.addEventListener("click", () => checkAnswer(choice));
+            choicesDisplay.appendChild(button);
+        });
+    }
+
+    // Function to check the selected answer
+    function checkAnswer(selected) {
+        if (selected === correctAnswer) {
+            resultMessage.textContent = "Correct! 🎉";
+            resultMessage.style.color = "green";
+            nextButton.style.display = "block"; // Show the "Next" button
+        } else {
+            resultMessage.textContent = "Try Again! ❌";
+            resultMessage.style.color = "red";
+        }
+    }
+
+    // Function to move to the next pattern
+    nextButton.addEventListener("click", generatePattern);
+
+    // Initialize the first pattern
+    generatePattern();
+});
+
+
+
+
+
+
