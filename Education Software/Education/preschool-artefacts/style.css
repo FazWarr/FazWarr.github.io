@@ -292,7 +292,38 @@ button:hover {
     margin-top: 20px;
 }
 
-
+/* style.css */
+  .container {
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .start-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  .image-options img {
+    width: 100px;
+    height: auto;
+    margin: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 10px;
+  }
+  
+  .image-options img:hover {
+    border-color: #2196F3;
+  }
+  
 
 
 

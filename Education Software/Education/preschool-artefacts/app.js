@@ -209,7 +209,82 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 {/* <h2>Sorting and Categorizing:</h2> */}
-
+// script.js
+const questions = [
+    {
+      question: "Which is longer?",
+      images: [
+        { src: "preschool-artefacts/pencil.png", alt: "Pencil", answer: "A" },
+        { src: "preschool-artefacts/car.png", alt: "Car", answer: "B" }
+      ],
+      correctAnswer: "B",
+      feedback: "A car is longer than a pencil!"
+    },
+    {
+      question: "Which is heavier?",
+      images: [
+        { src: "preschool-artefacts/feather.png", alt: "Feather", answer: "A" },
+        { src: "preschool-artefacts/bag-of-sugar.png", alt: "Bag of Sugar", answer: "B" }
+      ],
+      correctAnswer: "B",
+      feedback: "A bag of sugar is heavier than a feather!"
+    },
+    {
+      question: "Which can hold more?",
+      images: [
+        { src: "preschool-artefacts/cup.png", alt: "Cup", answer: "A" },
+        { src: "preschool-artefacts/bathtub.png", alt: "Bathtub", answer: "B" }
+      ],
+      correctAnswer: "B",
+      feedback: "A bathtub can hold more than a cup!"
+    }
+  ];
+  
+  let currentQuestionIndex = 0;
+  
+  function startGame() {
+    currentQuestionIndex = 0;
+    displayQuestion();
+  }
+  
+  function displayQuestion() {
+    const questionArea = document.getElementById('question');
+    const optionsArea = document.getElementById('options');
+    const question = questions[currentQuestionIndex];
+  
+    questionArea.textContent = question.question;
+    optionsArea.innerHTML = ""; // Clear previous images
+  
+    question.images.forEach(image => {
+      const imgElement = document.createElement('img');
+      imgElement.src = image.src;
+      imgElement.alt = image.alt;
+      imgElement.onclick = () => checkAnswer(image.answer);
+      optionsArea.appendChild(imgElement);
+    });
+  }
+  
+  function checkAnswer(option) {
+    const question = questions[currentQuestionIndex];
+    const questionArea = document.getElementById('question');
+    
+    if (option === question.correctAnswer) {
+      questionArea.textContent = "Correct! " + question.feedback;
+    } else {
+      questionArea.textContent = "Oops! " + question.feedback;
+    }
+  
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      setTimeout(displayQuestion, 2000);
+    } else {
+      setTimeout(() => {
+        questionArea.textContent = "Great job! You've completed the game!";
+        document.getElementById('options').innerHTML = ""; // Clear options
+      }, 2000);
+    }
+  }
+  
 
 
 
