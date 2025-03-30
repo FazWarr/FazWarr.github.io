@@ -286,6 +286,97 @@ const questions = [
   }
   
 
+{/* <h2>Spatial Awareness:</h2> */}
+// script.js
+// script.js
+document.addEventListener("DOMContentLoaded", () => {
+    const positions = [
+      { id: "above", text: "Drag the object ABOVE the target!", top: "50px", left: "150px" },
+      { id: "below", text: "Drag the object BELOW the target!", top: "250px", left: "150px" },
+      { id: "beside", text: "Drag the object BESIDE the target!", top: "150px", left: "250px" },
+      { id: "inside", text: "Drag the object INSIDE the target!", top: "150px", left: "150px" }
+    ];
+  
+    let currentIndex = 0;
+  
+    const instruction = document.getElementById("instruction");
+    const gameArea = document.getElementById("game-area");
+    const feedbackArea = document.getElementById("feedback-area");
+    const startButton = document.getElementById("start-buttonSpatial");
+  
+    startButton.addEventListener("click", startGame);
+  
+    function startGame() {
+      currentIndex = 0;
+      feedbackArea.textContent = ""; // Clear previous feedback
+      displayInstruction();
+      renderGameElements();
+    }
+  
+    function displayInstruction() {
+      instruction.textContent = positions[currentIndex].text;
+    }
+  
+    function renderGameElements() {
+      gameArea.innerHTML = ""; // Clear the game area
+  
+      // Create the target
+      const target = document.createElement("div");
+      target.id = "targetSpatial";
+      target.textContent = "T";
+      gameArea.appendChild(target);
+  
+      // Create the draggable object
+      const object = document.createElement("div");
+      object.classList.add("objectSpatial");
+      object.textContent = "O";
+      object.style.top = "150px";
+      object.style.left = "50px";
+      object.setAttribute("draggable", true);
+  
+      // Drag events
+      object.ondragstart = (e) => {
+        e.dataTransfer.setData("text/plain", null);
+      };
+  
+      target.ondragover = (e) => {
+        e.preventDefault();
+      };
+  
+      target.ondrop = () => {
+        const correctPosition = positions[currentIndex].id;
+  
+        // Position the object based on the current instruction
+        if (correctPosition === "inside") {
+          object.style.top = "150px";
+          object.style.left = "150px";
+          feedbackArea.textContent = "The object is INSIDE the target. Restarting the game!";
+          setTimeout(startGame, 5000); // Restart the game after a brief pause
+        } else {
+          object.style.top = positions[currentIndex].top;
+          object.style.left = positions[currentIndex].left;
+          displayFeedback(correctPosition);
+          currentIndex++;
+          if (currentIndex < positions.length) {
+            displayInstruction();
+          } else {
+            instruction.textContent = "Great job! You've mastered positional concepts!";
+            gameArea.innerHTML = ""; // Clear the game area
+          }
+        }
+      };
+  
+      gameArea.appendChild(object);
+    }
+  
+    function displayFeedback(correctPosition) {
+      let feedbackMessage = `The object is ${correctPosition.toUpperCase()} the target!`;
+      feedbackArea.textContent = feedbackMessage;
+    }
+  });
+  
+  
+  
 
 
 
