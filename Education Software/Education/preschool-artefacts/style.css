@@ -329,14 +329,13 @@ button:hover {
 
   
   .containerSpatial {
-    margin: 50px auto;
-    padding: 20px;
+    margin: 20px auto;
+    padding: 10px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    max-width: 95%; /* Adjusts to fit mobile screens */
   }
-  
   
   button {
     margin: 20px;
@@ -362,21 +361,22 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 300px;
+    height: 250px; /* Reduced height for smaller screens */
     border: 2px dashed #bbb;
     border-radius: 10px;
-    background-color: #f0f0f0;
+    background-color: #f9f9f9;
     position: relative;
+    width: 90%; /* Flexible width */
   }
   
   .objectSpatial {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 50px; /* Reduced size for small screens */
+    height: 50px;
     border-radius: 50%;
     text-align: center;
-    line-height: 60px;
-    font-size: 24px;
+    line-height: 50px; /* Adjusted for smaller object size */
+    font-size: 16px; /* Scaled down font */
     font-weight: bold;
     color: white;
     cursor: grab;
@@ -385,23 +385,25 @@ button:hover {
   
   #targetSpatial {
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 60px; /* Reduced target size for mobile */
+    height: 60px;
     background-color: #4caf50;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 16px; /* Scaled down font */
     font-weight: bold;
     color: white;
   }
 
   #feedback-area {
     margin-top: 10px;
-    font-size: 18px;
+    font-size: 16px; /* Scaled down font for feedback */
     color: #00796b;
     font-weight: bold;
+    width: 90%; /* Flexible width */
+    text-align: center; /* Center feedback on mobile */
   }
   
   
