@@ -442,9 +442,7 @@ button:hover {
     cursor: default;
   }
   
-  .binSort span {
-    color: #00796b; /* Text styling */
-  }
+
   
   #objectsSort {
     display: flex;
@@ -476,21 +474,7 @@ button:hover {
     font-weight: bold;
     margin-top: 20px;
   }
-  
-  button {
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: white;
-  }
-  
-  button:hover {
-    opacity: 0.8;
-  }
+
     
 
 

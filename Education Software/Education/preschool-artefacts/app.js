@@ -374,7 +374,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 {/* <h2>Sorting and Categorizing:</h2> */}
-// script.js
 document.addEventListener("DOMContentLoaded", () => {
     const bins = {
       "size-bin": "Size",
