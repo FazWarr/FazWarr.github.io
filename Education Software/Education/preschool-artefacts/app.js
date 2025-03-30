@@ -208,8 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
     generatePattern();
 });
 
-{/* <h2>Sorting and Categorizing:</h2> */}
-// script.js
+{/* <h2>Measurement:</h2> */}
 const questions = [
     {
       question: "Which is longer?",
@@ -281,13 +280,12 @@ const questions = [
       setTimeout(() => {
         questionArea.textContent = "Great job! You've completed the game!";
         document.getElementById('options').innerHTML = ""; // Clear options
-      }, 2000);
+      }, 1000);
     }
   }
   
 
 {/* <h2>Spatial Awareness:</h2> */}
-// script.js
 // script.js
 document.addEventListener("DOMContentLoaded", () => {
     const positions = [
