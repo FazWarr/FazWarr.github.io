@@ -286,7 +286,6 @@ const questions = [
   
 
 {/* <h2>Spatial Awareness:</h2> */}
-// script.js
 document.addEventListener("DOMContentLoaded", () => {
     const positions = [
       { id: "above", text: "Drag the object ABOVE the target!", top: "50px", left: "150px" },
@@ -372,6 +371,116 @@ document.addEventListener("DOMContentLoaded", () => {
       feedbackArea.textContent = feedbackMessage;
     }
   });
+
+
+{/* <h2>Sorting and Categorizing:</h2> */}
+// script.js
+document.addEventListener("DOMContentLoaded", () => {
+    const bins = {
+      "size-bin": "Size",
+      "color-bin": "Color",
+      "shape-bin": "Shape",
+      "purpose-bin": "Purpose"
+    };
+  
+    const objects = [
+      { id: "obj1", src: "preschool-artefacts/images/small-ball.png", category: "Size" },
+      { id: "obj2", src: "preschool-artefacts/images/big-box.png", category: "Size" },
+      { id: "obj3", src: "preschool-artefacts/images/tiny-star.png", category: "Size" },
+      { id: "obj4", src: "preschool-artefacts/images/large-cylinder.png", category: "Size" },
+      { id: "obj5", src: "preschool-artefacts/images/red-cube.png", category: "Color" },
+      { id: "obj6", src: "preschool-artefacts/images/blue-circle.png", category: "Color" },
+      { id: "obj7", src: "preschool-artefacts/images/yellow-triangle.png", category: "Color" },
+      { id: "obj8", src: "preschool-artefacts/images/green-rectangle.png", category: "Color" },
+      { id: "obj9", src: "preschool-artefacts/images/circle.png", category: "Shape" },
+      { id: "obj10", src: "preschool-artefacts/images/square.png", category: "Shape" },
+      { id: "obj11", src: "preschool-artefacts/images/triangle.png", category: "Shape" },
+      { id: "obj12", src: "preschool-artefacts/images/rectangle.png", category: "Shape" },
+      { id: "obj13", src: "preschool-artefacts/images/traffic-light.png", category: "Purpose" },
+      { id: "obj14", src: "preschool-artefacts/images/stop-sign.png", category: "Purpose" },
+      { id: "obj15", src: "preschool-artefacts/images/speed-limit.png", category: "Purpose" },
+      { id: "obj16", src: "preschool-artefacts/images/yield-sign.png", category: "Purpose" }
+    ];
+  
+    let objectsPlaced = 0;
+  
+    function startGame() {
+      objectsPlaced = 0;
+      document.getElementById("message").textContent = ""; // Clear message
+      renderBins();
+      renderObjects();
+    }
+  
+    function renderBins() {
+      const binsContainer = document.getElementById("binsSort");
+      binsContainer.innerHTML = ""; // Clear bins
+      for (const bin in bins) {
+        const binElement = document.createElement("div");
+        binElement.classList.add("binSort");
+        binElement.id = bin;
+        const binImage = document.createElement("img");
+        // binImage.src = `${bin}-image.png`; // Bin image source
+        // binImage.alt = `${bins[bin]} Bin`;
+        const binLabel = document.createElement("p");
+        binLabel.textContent = bins[bin];
+        binElement.appendChild(binImage);
+        binElement.appendChild(binLabel);
+        binElement.ondragover = (e) => e.preventDefault(); // Allow dropping
+        binElement.ondrop = (e) => handleDrop(e, bin); // Handle drop events
+        binsContainer.appendChild(binElement);
+      }
+    }
+  
+    function renderObjects() {
+      const objectsContainer = document.getElementById("objectsSort");
+      objectsContainer.innerHTML = ""; // Clear objects
+      shuffleArray(objects).forEach((obj) => {
+        const objectElement = document.createElement("div");
+        objectElement.classList.add("objectSort");
+        objectElement.id = obj.id;
+        const objectImage = document.createElement("img");
+        objectImage.src = obj.src; // Object image source
+        objectImage.alt = obj.category;
+        objectElement.appendChild(objectImage);
+        objectElement.setAttribute("draggable", true);
+        objectElement.ondragstart = (e) => e.dataTransfer.setData("text/plain", obj.id);
+        objectsContainer.appendChild(objectElement);
+      });
+    }
+  
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+  
+    function handleDrop(e, bin) {
+      const objectId = e.dataTransfer.getData("text/plain");
+      const object = objects.find((obj) => obj.id === objectId);
+  
+      if (object.category === bins[bin]) {
+        document.getElementById(objectId).remove(); // Remove the object
+        objectsPlaced++;
+  
+        // Check if all objects are placed
+        if (objectsPlaced === objects.length) {
+          document.getElementById("message").textContent =
+            "Congratulations! You've sorted all the objects! Click 'Restart Game' to play again.";
+        }
+      } else {
+        // Notify the user of an incorrect bin
+        document.getElementById("message").textContent = "Wrong bin! Try again.";
+      }
+    }
+  
+    document.getElementById("restart-buttonSort").addEventListener("click", startGame);
+  
+    startGame();
+  });
+  
+  
   
   
   

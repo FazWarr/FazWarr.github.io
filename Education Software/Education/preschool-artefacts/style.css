@@ -411,6 +411,88 @@ button:hover {
   }
   
 
+  /* style.css */  
+  .containerSort {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 95%;
+  }
+  
+  #binsSort {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px auto;
+  }
+  
+  .binSort {
+    width: 120px;
+    height: 120px;
+    background-color: #f9f9f9;
+    border: 3px solid #00796b; /* Border to mimic bin appearance */
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds depth */
+    cursor: default;
+  }
+  
+  .binSort span {
+    color: #00796b; /* Text styling */
+  }
+  
+  #objectsSort {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px auto;
+  }
+  
+  .objectSort {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: grab;
+  }
+  
+  .objectSort img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+  
+  .objectSort:active {
+    cursor: grabbing;
+  }
+  
+  #message {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  button {
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+    
+
 
 
 /* Responsive adjustments */
