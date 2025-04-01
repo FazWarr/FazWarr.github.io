@@ -372,8 +372,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // preschool-artefacts/images/small-ball.png
-
 {/* <h2>Sorting and Categorizing:</h2> */}
 document.addEventListener("DOMContentLoaded", () => {
   const bins = {
