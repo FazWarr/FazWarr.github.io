@@ -372,6 +372,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // preschool-artefacts/images/small-ball.png
 
 {/* <h2>Sorting and Categorizing:</h2> */}
 document.addEventListener("DOMContentLoaded", () => {
@@ -440,7 +441,7 @@ document.addEventListener("DOMContentLoaded", () => {
       objectElement.classList.add("objectSort");
       objectElement.id = obj.id;
 
-      // Add image element inside the object div
+      // Add image element inside the object container
       const imageElement = document.createElement("img");
       imageElement.src = obj.src;
       imageElement.alt = obj.alt;
@@ -458,7 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Mobile touch events
       objectElement.addEventListener("touchstart", (e) => {
         draggedItem = obj.id;
-        e.target.style.opacity = "0.5"; // Visual feedback for dragging
+        objectElement.style.opacity = "0.5"; // Visual feedback for dragging
       });
 
       objectElement.addEventListener("touchmove", (e) => {
@@ -469,7 +470,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       objectElement.addEventListener("touchend", (e) => {
-        e.target.style.opacity = "1"; // Reset visual feedback
+        objectElement.style.opacity = "1"; // Reset visual feedback
         draggedItem = obj.id;
       });
 
@@ -517,6 +518,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startGame();
 });
+
 
   
   
