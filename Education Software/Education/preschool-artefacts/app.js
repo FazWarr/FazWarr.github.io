@@ -375,109 +375,149 @@ document.addEventListener("DOMContentLoaded", () => {
 
 {/* <h2>Sorting and Categorizing:</h2> */}
 document.addEventListener("DOMContentLoaded", () => {
-    const bins = {
-      "size-bin": "Size",
-      "color-bin": "Color",
-      "shape-bin": "Shape",
-      "purpose-bin": "Purpose"
-    };
-  
-    const objects = [
-      { id: "obj1", src: "preschool-artefacts/images/small-ball.png", category: "Size" },
-      { id: "obj2", src: "preschool-artefacts/images/big-box.png", category: "Size" },
-      { id: "obj3", src: "preschool-artefacts/images/tiny-star.png", category: "Size" },
-      { id: "obj4", src: "preschool-artefacts/images/large-cylinder.png", category: "Size" },
-      { id: "obj5", src: "preschool-artefacts/images/red-cube.png", category: "Color" },
-      { id: "obj6", src: "preschool-artefacts/images/blue-circle.png", category: "Color" },
-      { id: "obj7", src: "preschool-artefacts/images/yellow-triangle.png", category: "Color" },
-      { id: "obj8", src: "preschool-artefacts/images/green-rectangle.png", category: "Color" },
-      { id: "obj9", src: "preschool-artefacts/images/circle.png", category: "Shape" },
-      { id: "obj10", src: "preschool-artefacts/images/square.png", category: "Shape" },
-      { id: "obj11", src: "preschool-artefacts/images/triangle.png", category: "Shape" },
-      { id: "obj12", src: "preschool-artefacts/images/rectangle.png", category: "Shape" },
-      { id: "obj13", src: "preschool-artefacts/images/traffic-light.png", category: "Purpose" },
-      { id: "obj14", src: "preschool-artefacts/images/stop-sign.png", category: "Purpose" },
-      { id: "obj15", src: "preschool-artefacts/images/speed-limit.png", category: "Purpose" },
-      { id: "obj16", src: "preschool-artefacts/images/yield-sign.png", category: "Purpose" }
-    ];
-  
-    let objectsPlaced = 0;
-  
-    function startGame() {
-      objectsPlaced = 0;
-      document.getElementById("message").textContent = ""; // Clear message
-      renderBins();
-      renderObjects();
+  const bins = {
+    "size-bin": "Size",
+    "color-bin": "Color",
+    "shape-bin": "Shape",
+    "purpose-bin": "Purpose"
+  };
+
+  const objects = [
+    { id: "obj1", src: "preschool-artefacts/images/small-ball.png", category: "Size", alt: "Small Ball" },
+    { id: "obj2", src: "preschool-artefacts/images/big-box.png", category: "Size", alt: "Big Box" },
+    { id: "obj3", src: "preschool-artefacts/images/tiny-star.png", category: "Size", alt: "Tiny Star" },
+    { id: "obj4", src: "preschool-artefacts/images/large-cylinder.png", category: "Size", alt: "Large Cylinder" },
+    { id: "obj5", src: "preschool-artefacts/images/red-cube.png", category: "Color", alt: "Red Cube" },
+    { id: "obj6", src: "preschool-artefacts/images/blue-circle.png", category: "Color", alt: "Blue Circle" },
+    { id: "obj7", src: "preschool-artefacts/images/yellow-triangle.png", category: "Color", alt: "Yellow Triangle" },
+    { id: "obj8", src: "preschool-artefacts/images/green-rectangle.png", category: "Color", alt: "Green Rectangle" },
+    { id: "obj9", src: "preschool-artefacts/images/circle.png", category: "Shape", alt: "Circle" },
+    { id: "obj10", src: "preschool-artefacts/images/square.png", category: "Shape", alt: "Square" },
+    { id: "obj11", src: "preschool-artefacts/images/triangle.png", category: "Shape", alt: "Triangle" },
+    { id: "obj12", src: "preschool-artefacts/images/rectangle.png", category: "Shape", alt: "Rectangle" },
+    { id: "obj13", src: "preschool-artefacts/images/traffic-light.png", category: "Purpose", alt: "Traffic Light" },
+    { id: "obj14", src: "preschool-artefacts/images/stop-sign.png", category: "Purpose", alt: "Stop Sign" },
+    { id: "obj15", src: "preschool-artefacts/images/speed-limit.png", category: "Purpose", alt: "Speed Limit" },
+    { id: "obj16", src: "preschool-artefacts/images/yield-sign.png", category: "Purpose", alt: "Yield Sign" }
+  ];
+
+  let draggedItem = null; // Reference to the currently dragged item
+  let objectsPlaced = 0;
+
+  function startGame() {
+    objectsPlaced = 0;
+    document.getElementById("message").textContent = "";
+    renderBins();
+    renderObjects();
+  }
+
+  function renderBins() {
+    const binsContainer = document.getElementById("binsSort");
+    binsContainer.innerHTML = "";
+    for (const bin in bins) {
+      const binElement = document.createElement("div");
+      binElement.classList.add("binSort");
+      binElement.id = bin;
+      binElement.textContent = bins[bin];
+
+      // Desktop drag-and-drop events
+      binElement.ondragover = (e) => e.preventDefault();
+      binElement.ondrop = (e) => handleDrop(e, bin);
+
+      // Mobile touch events
+      binElement.addEventListener("touchmove", (e) => e.preventDefault());
+      binElement.addEventListener("touchend", () => handleTouchDrop(bin));
+
+      binsContainer.appendChild(binElement);
     }
-  
-    function renderBins() {
-      const binsContainer = document.getElementById("binsSort");
-      binsContainer.innerHTML = ""; // Clear bins
-      for (const bin in bins) {
-        const binElement = document.createElement("div");
-        binElement.classList.add("binSort");
-        binElement.id = bin;
-        const binImage = document.createElement("img");
-        // binImage.src = `${bin}-image.png`; // Bin image source
-        // binImage.alt = `${bins[bin]} Bin`;
-        const binLabel = document.createElement("p");
-        binLabel.textContent = bins[bin];
-        binElement.appendChild(binImage);
-        binElement.appendChild(binLabel);
-        binElement.ondragover = (e) => e.preventDefault(); // Allow dropping
-        binElement.ondrop = (e) => handleDrop(e, bin); // Handle drop events
-        binsContainer.appendChild(binElement);
-      }
-    }
-  
-    function renderObjects() {
-      const objectsContainer = document.getElementById("objectsSort");
-      objectsContainer.innerHTML = ""; // Clear objects
-      shuffleArray(objects).forEach((obj) => {
-        const objectElement = document.createElement("div");
-        objectElement.classList.add("objectSort");
-        objectElement.id = obj.id;
-        const objectImage = document.createElement("img");
-        objectImage.src = obj.src; // Object image source
-        objectImage.alt = obj.category;
-        objectElement.appendChild(objectImage);
-        objectElement.setAttribute("draggable", true);
-        objectElement.ondragstart = (e) => e.dataTransfer.setData("text/plain", obj.id);
-        objectsContainer.appendChild(objectElement);
+  }
+
+  function renderObjects() {
+    const objectsContainer = document.getElementById("objectsSort");
+    objectsContainer.innerHTML = "";
+    shuffleArray(objects).forEach((obj) => {
+      const objectElement = document.createElement("div");
+      objectElement.classList.add("objectSort");
+      objectElement.id = obj.id;
+
+      // Add image element inside the object div
+      const imageElement = document.createElement("img");
+      imageElement.src = obj.src;
+      imageElement.alt = obj.alt;
+      imageElement.draggable = false; // Prevent dragging image separately
+
+      objectElement.appendChild(imageElement);
+
+      // Desktop drag-and-drop events
+      objectElement.setAttribute("draggable", true);
+      objectElement.ondragstart = (e) => {
+        draggedItem = obj.id;
+        e.dataTransfer.setData("text/plain", obj.id);
+      };
+
+      // Mobile touch events
+      objectElement.addEventListener("touchstart", (e) => {
+        draggedItem = obj.id;
+        e.target.style.opacity = "0.5"; // Visual feedback for dragging
       });
+
+      objectElement.addEventListener("touchmove", (e) => {
+        const touchLocation = e.targetTouches[0];
+        objectElement.style.position = "absolute";
+        objectElement.style.left = `${touchLocation.pageX - 40}px`; // Adjust for object size
+        objectElement.style.top = `${touchLocation.pageY - 40}px`; // Adjust for object size
+      });
+
+      objectElement.addEventListener("touchend", (e) => {
+        e.target.style.opacity = "1"; // Reset visual feedback
+        draggedItem = obj.id;
+      });
+
+      objectsContainer.appendChild(objectElement);
+    });
+  }
+
+  function handleDrop(e, bin) {
+    const objectId = e.dataTransfer.getData("text/plain");
+    processDrop(objectId, bin);
+  }
+
+  function handleTouchDrop(bin) {
+    if (draggedItem) {
+      processDrop(draggedItem, bin);
+      draggedItem = null; // Clear the dragged item after dropping
     }
-  
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  function processDrop(objectId, bin) {
+    const object = objects.find((obj) => obj.id === objectId);
+
+    if (object.category === bins[bin]) {
+      document.getElementById(objectId).remove();
+      objectsPlaced++;
+
+      if (objectsPlaced === objects.length) {
+        document.getElementById("message").textContent =
+          "Congratulations! You've sorted all the objects! Click 'Restart Game' to play again.";
       }
-      return array;
+    } else {
+      document.getElementById("message").textContent = "Wrong bin! Try again.";
     }
-  
-    function handleDrop(e, bin) {
-      const objectId = e.dataTransfer.getData("text/plain");
-      const object = objects.find((obj) => obj.id === objectId);
-  
-      if (object.category === bins[bin]) {
-        document.getElementById(objectId).remove(); // Remove the object
-        objectsPlaced++;
-  
-        // Check if all objects are placed
-        if (objectsPlaced === objects.length) {
-          document.getElementById("message").textContent =
-            "Congratulations! You've sorted all the objects! Click 'Restart Game' to play again.";
-        }
-      } else {
-        // Notify the user of an incorrect bin
-        document.getElementById("message").textContent = "Wrong bin! Try again.";
-      }
+  }
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
-  
-    document.getElementById("restart-buttonSort").addEventListener("click", startGame);
-  
-    startGame();
-  });
+    return array;
+  }
+
+  document.getElementById("restart-buttonSort").addEventListener("click", startGame);
+
+  startGame();
+});
+
   
   
   

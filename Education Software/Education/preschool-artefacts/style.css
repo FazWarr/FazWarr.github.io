@@ -457,12 +457,15 @@ button:hover {
     margin: 10px;
     border-radius: 10px;
     cursor: grab;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds depth */
+    position: relative; /* Required for touchmove events */
   }
   
   .objectSort img {
     width: 100%;
     height: 100%;
     border-radius: 10px;
+    pointer-events: none; /* Prevent interaction with the image directly */
   }
   
   .objectSort:active {
